@@ -33,7 +33,7 @@
 NOTE:
 - IP/HOSTED CDN FROM CLOUDFLARE: **Please select IP/Host from a domain that uses Cloudflare CDN**
 - YOURDOMAINSERVER: **Fill with domain of your server**
-- service_name: **Fill with path of your websocket server**
+- path: **Fill with path of your websocket server**
 
 ## Trojan Websocket SNI
 ```json
