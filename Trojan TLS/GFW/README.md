@@ -1,5 +1,5 @@
 # Trojan TLS/GFW
-## Trojan TLS/GFW
+## Trojan TLS/GFW SNI
 ```json
 {
       "type": "trojan",
