@@ -27,6 +27,11 @@
         "idle_timeout": "15s",
         "ping_timeout": "15s",
         "permit_without_stream": false
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
       }
 }
 ```
@@ -64,6 +69,11 @@ NOTE:
         "idle_timeout": "15s",
         "ping_timeout": "15s",
         "permit_without_stream": false
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
       }
 }
 ```
