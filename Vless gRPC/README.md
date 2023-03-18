@@ -17,7 +17,7 @@
           "fingerprint": "android"
         }
       },
-      "packet_encoding": "",
+      "packet_encoding": "xudp",
       "transport": {
         "type": "grpc",
         "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
@@ -51,7 +51,7 @@ NOTE:
           "fingerprint": "android"
         }
       },
-      "packet_encoding": "",
+      "packet_encoding": "xudp",
       "transport": {
         "type": "grpc",
         "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
