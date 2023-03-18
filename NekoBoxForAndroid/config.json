@@ -78,7 +78,7 @@
   "outbounds": [
     {
       "tag": "Internet",
-      "type": "select",
+      "type": "selector",
       "outbounds":[
         "Best Latency",
         "proxy A",
@@ -102,7 +102,7 @@
     },
     {
       "tag": "Lock Region ID",
-      "type": "select",
+      "type": "selector",
       "outbounds":[
         "proxy A",
         "proxy B",
@@ -112,7 +112,7 @@
     },
     {
       "tag": "Option ADs",
-      "type": "select",
+      "type": "selector",
       "outbounds":[
         "block",
         "Internet"
@@ -120,7 +120,7 @@
     },
     {
       "tag": "Option P0rn",
-      "type": "select",
+      "type": "selector",
       "outbounds":[
         "block",
         "Internet"
