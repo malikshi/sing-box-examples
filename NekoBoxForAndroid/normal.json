@@ -2,18 +2,6 @@
   "dns": {
     "rules": [
       {
-        "domain_suffix":[
-          "googlesyndication.com"
-        ],
-        "server":"dns-remote"
-      },
-      {
-        "geosite": [
-          "rule-ads"
-        ],
-        "server": "dns-block"
-      },
-      {
         "domain_suffix": [
           ".arpa.",
           ".arpa"
@@ -83,7 +71,75 @@
   ],
   "outbounds": [
     {
-      "tag": "proxy",
+      "tag": "Internet",
+      "type": "selector",
+      "outbounds":[
+        "Best Latency",
+        "proxy A",
+        "proxy B",
+        "proxy C",
+        "proxy D"
+      ]
+    },
+    {
+      "tag": "Best Latency",
+      "type": "urltest",
+      "outbounds":[
+        "proxy A",
+        "proxy B",
+        "proxy C",
+        "proxy D"
+      ],
+      "url": "https://detectportal.firefox.com/success.txt",
+      "interval": "60s",
+      "tolerance": 0
+    },
+    {
+      "tag": "Lock Region ID",
+      "type": "selector",
+      "outbounds":[
+        "proxy A",
+        "proxy B",
+        "proxy C",
+        "proxy D"
+      ]
+    },
+    {
+      "tag": "Option ADs",
+      "type": "selector",
+      "outbounds":[
+        "block",
+        "Internet"
+      ]
+    },
+    {
+      "tag": "Option P0rn",
+      "type": "selector",
+      "outbounds":[
+        "block",
+        "Internet"
+      ]
+    },
+    {
+      "tag": "proxy A",
+      "domain_strategy": ""
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "tag": "proxy B",
+      "domain_strategy": ""
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "tag": "proxy C",
+      "domain_strategy": ""
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "tag": "proxy D",
       "domain_strategy": ""
       // place 1 account here
       // check example account at our repo
@@ -110,28 +166,64 @@
     "rules": [
       {
         "network": "udp",
-        "outbound": "block",
+        "geosite":[
+          "google"
+        ],
+        "geoip":[
+          "google"
+        ],
         "port": [
           443
-        ]
+        ],
+        "outbound": "block"
       },
       {
         "domain_suffix": [
           "googlesyndication.com"
         ],
-        "outbound": "proxy"
+        "outbound": "Internet"
       },
       {
         "geosite": [
-          "rule-ads"
+          "rule-ads",
+          "oisd-small"
         ],
-        "outbound": "block"
+        "outbound": "Option ADs"
+      },
+      {
+        "geosite":[
+          "category-porn",
+          "oisd-nsfw"
+        ],
+        "outbound":"Option P0rn"
+      },
+      {
+        "port":[
+          3478,
+          4244,
+          5222,
+          5223,
+          5242,
+          45395,
+          50318,
+          59234
+        ],
+        "geoip":[
+          "facebook"
+        ],
+        "outbound":"bypass"
+      },
+      {
+        "geosite":[
+          "rule-indo"
+        ],
+        "outbound":"Lock Region ID"
       },
       {
         "ip_cidr": [
           "8.8.8.8"
         ],
-        "outbound": "proxy"
+        "outbound": "Internet"
       },
       {
         "inbound": [
