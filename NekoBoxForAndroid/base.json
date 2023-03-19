@@ -9,14 +9,7 @@
       },
       {
         "geosite": [
-          "rule-ads",
-          "oisd-full"
-        ],
-        "server": "dns-block"
-      },
-      {
-        "geosite": [
-          "rule-malicious"
+          "rule-ads"
         ],
         "server": "dns-block"
       },
@@ -117,12 +110,6 @@
     "rules": [
       {
         "network": "udp",
-        "geosite":[
-          "google"
-        ],
-        "geoip":[
-          "google"
-        ],
         "outbound": "block",
         "port": [
           443
@@ -136,20 +123,7 @@
       },
       {
         "geosite": [
-          "rule-malicious"
-        ],
-        "outbound":"block"
-      },
-      {
-        "geoip": [
-          "malicious"
-        ],
-        "outbound":"block"
-      },
-      {
-        "geosite": [
-          "rule-ads",
-          "oisd-full"
+          "rule-ads"
         ],
         "outbound": "block"
       },
