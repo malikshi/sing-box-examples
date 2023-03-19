@@ -4,7 +4,8 @@
       {
         "geosite":[
           "rule-malicious"
-        ]
+        ],
+        "server":"dns-block"
       },
       {
         "domain_suffix": [
@@ -204,7 +205,8 @@
       },
       {
         "geosite":[
-          "oisd-nsfw"
+          "oisd-nsfw",
+          "category-porn"
         ],
         "outbound":"Option P0rn"
       },
