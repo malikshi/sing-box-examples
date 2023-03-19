@@ -1,0 +1,270 @@
+{
+  "dns": {
+    "rules": [
+      {
+        "geosite":[
+          "rule-malicious"
+        ]
+      },
+      {
+        "domain_suffix": [
+          ".arpa.",
+          ".arpa"
+        ],
+        "server": "dns-block"
+      }
+    ],
+    "servers": [
+      {
+        "address": "8.8.8.8",
+        "address_resolver": "dns-direct",
+        "strategy": "ipv4_only",
+        "tag": "dns-remote"
+      },
+      {
+        "address": "https://1.1.1.1/dns-query",
+        "address_resolver": "dns-local",
+        "detour": "direct",
+        "strategy": "ipv4_only",
+        "tag": "dns-direct"
+      },
+      {
+        "address": "underlying://0.0.0.0",
+        "detour": "direct",
+        "tag": "dns-local"
+      },
+      {
+        "address": "rcode://success",
+        "tag": "dns-block"
+      }
+    ],
+    "strategy": "ipv4_only"
+  },
+  "experimental": {
+    "clash_api": {
+      "cache_file": "../cache/clash.db",
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "../files/yacd"
+    }
+  },
+  "inbounds": [
+    {
+      "listen": "127.0.0.1",
+      "listen_port": 6450,
+      "override_address": "8.8.8.8",
+      "override_port": 53,
+      "tag": "dns-in",
+      "type": "direct"
+    },
+    {
+      "endpoint_independent_nat": true,
+      "inet4_address": [
+        "172.19.0.1/28"
+      ],
+      "sniff": true,
+      "stack": "system",
+      "tag": "tun-in",
+      "type": "tun"
+    },
+    {
+      "listen": "127.0.0.1",
+      "listen_port": 2080,
+      "sniff": true,
+      "tag": "mixed-in",
+      "type": "mixed"
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "Internet",
+      "type": "selector",
+      "outbounds":[
+        "Best Latency",
+        "proxy A",
+        "proxy B",
+        "proxy C",
+        "proxy D"
+      ]
+    },
+    {
+      "tag": "Best Latency",
+      "type": "urltest",
+      "outbounds":[
+        "proxy A",
+        "proxy B",
+        "proxy C",
+        "proxy D"
+      ],
+      "url": "https://detectportal.firefox.com/success.txt",
+      "interval": "60s",
+      "tolerance": 0
+    },
+    {
+      "tag": "Lock Region ID",
+      "type": "selector",
+      "outbounds":[
+        "proxy A",
+        "proxy B",
+        "proxy C",
+        "proxy D"
+      ]
+    },
+    {
+      "tag": "Option ADs",
+      "type": "selector",
+      "outbounds":[
+        "block",
+        "Internet"
+      ]
+    },
+    {
+      "tag": "Option P0rn",
+      "type": "selector",
+      "outbounds":[
+        "block",
+        "Internet"
+      ]
+    },
+    {
+      "tag": "proxy A",
+      "domain_strategy": ""
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "tag": "proxy B",
+      "domain_strategy": ""
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "tag": "proxy C",
+      "domain_strategy": ""
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "tag": "proxy D",
+      "domain_strategy": ""
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "tag": "direct",
+      "type": "direct"
+    },
+    {
+      "tag": "bypass",
+      "type": "direct"
+    },
+    {
+      "tag": "block",
+      "type": "block"
+    },
+    {
+      "tag": "dns-out",
+      "type": "dns"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "rules": [
+      {
+        "network": "udp",
+        "geosite":[
+          "google"
+        ],
+        "geoip":[
+          "google"
+        ],
+        "port": [
+          443
+        ],
+        "outbound": "block"
+      },
+      {
+        "domain_suffix": [
+          "googlesyndication.com"
+        ],
+        "outbound": "Internet"
+      },
+      {
+        "geosite":[
+          "rule-malicious"
+        ],
+        "outbound":"block"
+      },
+      {
+        "geosite": [
+          "rule-ads",
+          "oisd-full",
+          "category-ads-all"
+        ],
+        "outbound": "Option ADs"
+      },
+      {
+        "geosite":[
+          "oisd-nsfw"
+        ],
+        "outbound":"Option P0rn"
+      },
+      {
+        "port":[
+          3478,
+          4244,
+          5222,
+          5223,
+          5242,
+          45395,
+          50318,
+          59234
+        ],
+        "geoip":[
+          "facebook"
+        ],
+        "outbound":"bypass"
+      },
+      {
+        "geosite":[
+          "rule-indo"
+        ],
+        "outbound":"Lock Region ID"
+      },
+      {
+        "geoip":[
+          "id"
+        ],
+        "outbound":"Lock Region ID"
+      },
+      {
+        "ip_cidr": [
+          "8.8.8.8"
+        ],
+        "outbound": "Internet"
+      },
+      {
+        "inbound": [
+          "dns-in"
+        ],
+        "outbound": "dns-out"
+      },
+      {
+        "outbound": "dns-out",
+        "port": [
+          53
+        ]
+      },
+      {
+        "ip_cidr": [
+          "224.0.0.0/3",
+          "ff00::/8"
+        ],
+        "outbound": "block",
+        "source_ip_cidr": [
+          "224.0.0.0/3",
+          "ff00::/8"
+        ]
+      }
+    ]
+  }
+}
