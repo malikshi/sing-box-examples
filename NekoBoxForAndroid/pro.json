@@ -163,6 +163,7 @@
   ],
   "route": {
     "auto_detect_interface": true,
+    "final": "Internet",
     "rules": [
       {
         "network": "udp",
