@@ -88,8 +88,8 @@
   },
   "outbounds": [
     {
+      "domain_strategy": "",
       "tag": "proxy",
-      "domain_strategy": ""
       // place 1 account here
       // check example account at our repo
     },

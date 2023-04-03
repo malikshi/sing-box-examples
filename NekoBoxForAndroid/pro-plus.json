@@ -132,26 +132,26 @@
       ]
     },
     {
+      "domain_strategy": "",
       "tag": "proxy A",
-      "domain_strategy": ""
       // place 1 account here
       // check example account at our repo
     },
     {
+      "domain_strategy": "",
       "tag": "proxy B",
-      "domain_strategy": ""
       // place 1 account here
       // check example account at our repo
     },
     {
+      "domain_strategy": "",
       "tag": "proxy C",
-      "domain_strategy": ""
       // place 1 account here
       // check example account at our repo
     },
     {
+      "domain_strategy": "",
       "tag": "proxy D",
-      "domain_strategy": ""
       // place 1 account here
       // check example account at our repo
     },
