@@ -23,7 +23,7 @@
         "tag": "dns-remote"
       },
       {
-        "address": "https://1.1.1.1/dns-query",
+        "address": "1.1.1.1",
         "address_resolver": "dns-local",
         "detour": "direct",
         "strategy": "ipv4_only",
@@ -50,7 +50,7 @@
   },
   "inbounds": [
     {
-      "listen": "127.0.0.1",
+      "listen": "0.0.0.0",
       "listen_port": 6450,
       "override_address": "8.8.8.8",
       "override_port": 53,
@@ -58,6 +58,7 @@
       "type": "direct"
     },
     {
+      "domain_strategy":"ip4_only",
       "endpoint_independent_nat": true,
       "inet4_address": [
         "172.19.0.1/28"
@@ -68,6 +69,7 @@
       "type": "tun"
     },
     {
+      "domain_strategy":"ip4_only",
       "listen": "127.0.0.1",
       "listen_port": 2080,
       "sniff": true,
@@ -75,6 +77,9 @@
       "type": "mixed"
     }
   ],
+  "log":{
+    "level": "info"
+  },
   "outbounds": [
     {
       "tag": "Internet",
