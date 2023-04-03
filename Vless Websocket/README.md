@@ -2,8 +2,8 @@
 ## Vless Websocket TLS over CDN Cloudlfare
 ```json
 {
-      "type": "vless",
       "tag": "proxy A",
+      "type": "vless",
       "server": "IP/HOSTED CDN FROM CLOUDFLARE",
       "server_port": 443,
       "uuid": "UUID",
@@ -36,8 +36,8 @@ NOTE:
 ## Vless Websocket TLS SNI
 ```json
 {
-      "type": "vless",
       "tag": "proxy A",
+      "type": "vless",
       "server": "IP/YOURDOMAINSERVER",
       "server_port": 443,
       "uuid": "UUID",
@@ -70,8 +70,8 @@ NOTE:
 ## Vless Websocket NON TLS over CDN Cloudlfare
 ```json
 {
-      "type": "vless",
       "tag": "proxy A",
+      "type": "vless",
       "server": "IP/HOSTED CDN FROM CLOUDFLARE",
       "server_port": 80,
       "uuid": "UUID",
@@ -95,8 +95,8 @@ NOTE:
 ## Vless Websocket NON TLS
 ```json
 {
-      "type": "vless",
       "tag": "proxy A",
+      "type": "vless",
       "server": "IP/YOURDOMAINSERVER",
       "server_port": 80,
       "uuid": "UUID",

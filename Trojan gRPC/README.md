@@ -2,8 +2,8 @@
 ## Trojan gRPC over CDN Cloudlfare
 ```json
 {
-      "type": "trojan",
       "tag": "proxy A",
+      "type": "trojan",
       "server": "IP/HOSTED CDN FROM CLOUDFLARE",
       "server_port": 443,
       "password": "PASSWORD",
@@ -38,8 +38,8 @@ NOTE:
 ## Trojan gRPC SNI
 ```json
 {
-      "type": "trojan",
       "tag": "proxy A",
+      "type": "trojan",
       "server": "IP/YOURDOMAINSERVER",
       "server_port": 443,
       "password": "PASSWORD",

@@ -2,8 +2,8 @@
 ## Vmess Websocket TLS over CDN Cloudlfare
 ```json
 {
-      "type": "vmess",
       "tag": "proxy A",
+      "type": "vmess",
       "server": "IP/HOSTED CDN FROM CLOUDFLARE",
       "server_port": 443,
       "uuid": "UUID",
@@ -44,8 +44,8 @@ NOTE:
 ## Vmess Websocket TLS SNI
 ```json
 {
-      "type": "vmess",
       "tag": "proxy A",
+      "type": "vmess",
       "server": "IP/YOURDOMAINSERVER",
       "server_port": 443,
       "uuid": "UUID",
@@ -86,8 +86,8 @@ NOTE:
 ## Vmess Websocket NON TLS over CDN Cloudlfare
 ```json
 {
-      "type": "vmess",
       "tag": "proxy A",
+      "type": "vmess",
       "server": "IP/HOSTED CDN FROM CLOUDFLARE",
       "server_port": 80,
       "uuid": "UUID",
@@ -119,8 +119,8 @@ NOTE:
 ## Vmess Websocket NON TLS
 ```json
 {
-      "type": "vmess",
       "tag": "proxy A",
+      "type": "vmess",
       "server": "IP/YOURDOMAINSERVER",
       "server_port": 80,
       "uuid": "UUID",

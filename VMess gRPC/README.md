@@ -2,8 +2,8 @@
 ## Vmess gRPC over CDN Cloudlfare
 ```json
 {
-      "type": "vmess",
       "tag": "proxy A",
+      "type": "vmess",
       "server": "IP/HOSTED CDN FROM CLOUDFLARE",
       "server_port": 443,
       "uuid": "UUID",
@@ -44,8 +44,8 @@ NOTE:
 ## Vmess gRPC SNI
 ```json
 {
-      "type": "vmess",
       "tag": "proxy A",
+      "type": "vmess",
       "server": "IP/YOURDOMAINSERVER",
       "server_port": 443,
       "uuid": "UUID",

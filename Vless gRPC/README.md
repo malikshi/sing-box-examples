@@ -2,8 +2,8 @@
 ## Vless gRPC over CDN Cloudlfare
 ```json
 {
-      "type": "vless",
       "tag": "proxy A",
+      "type": "vless",
       "server": "IP/HOSTED CDN FROM CLOUDFLARE",
       "server_port": 443,
       "uuid": "UUID",
@@ -36,8 +36,8 @@ NOTE:
 ## Vless gRPC SNI
 ```json
 {
-      "type": "vless",
       "tag": "proxy A",
+      "type": "vless",
       "server": "IP/YOURDOMAINSERVER",
       "server_port": 443,
       "uuid": "UUID",

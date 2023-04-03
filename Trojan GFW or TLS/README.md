@@ -2,8 +2,8 @@
 ## Trojan TLS/GFW SNI
 ```json
 {
-      "type": "trojan",
       "tag": "proxy A",
+      "type": "trojan",
       "server": "IP/YOURDOMAINSERVER",
       "server_port": 443,
       "password": "PASSWORD",
