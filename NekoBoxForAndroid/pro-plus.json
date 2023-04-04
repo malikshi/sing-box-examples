@@ -58,7 +58,7 @@
       "type": "direct"
     },
     {
-      "domain_strategy":"ip4_only",
+      "domain_strategy":"ipv4_only",
       "endpoint_independent_nat": true,
       "inet4_address": [
         "172.19.0.1/28"
@@ -69,7 +69,7 @@
       "type": "tun"
     },
     {
-      "domain_strategy":"ip4_only",
+      "domain_strategy":"ipv4_only",
       "listen": "127.0.0.1",
       "listen_port": 2080,
       "sniff": true,
