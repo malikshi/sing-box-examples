@@ -1,0 +1,146 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "remote-dns",
+        "address": "1.0.0.1",
+        "strategy": "ipv4_only",
+        "detour": "Proxy"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain_suffix": [
+          ".arpa.",
+          ".arpa"
+        ],
+        "server": "dns-block"
+      }
+    ],
+    "final": "remote-dns",
+    "strategy": "ipv4_only",
+    "disable_cache": false,
+    "disable_expire": false
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "mtu": 30000,
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "sniff": true,
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "0.0.0.0",
+          "server_port": 8080
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "urltest",
+      "tag": "Proxy",
+      "outbounds": [
+        "proxy A",
+        "proxy B",
+        "proxy C",
+        "proxy D"
+      ],
+      "url": "https://detectportal.firefox.com/success.txt",
+      "interval": "60s",
+      "tolerance": 0
+    },
+    {
+      "domain_strategy": "ipv4_only",
+      "tag": "proxy A",
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "domain_strategy": "ipv4_only",
+      "tag": "proxy B",
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "domain_strategy": "ipv4_only",
+      "tag": "proxy C",
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "domain_strategy": "ipv4_only",
+      "tag": "proxy D",
+      // place 1 account here
+      // check example account at our repo
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "override_android_vpn": true,
+    "final": "Proxy",
+    "geoip": {
+      "download_url": "https://github.com/malikshi/sing-box-geo/releases/latest/download/geoip.db",
+      "download_detour": "Proxy"
+    },
+    "geosite": {
+      "download_url": "https://github.com/malikshi/sing-box-geo/releases/latest/download/geosite.db",
+      "download_detour": "Proxy"
+    },
+    "rules": [
+      {
+        "outbound": "dns-out",
+        "port": [
+          53
+        ]
+      },
+      {
+        "network":"udp",
+        "port":[443],
+        "outbound":"block"
+      },
+      {
+        "domain_suffix": [
+          "googlesyndication.com"
+        ],
+        "outbound": "Proxy"
+      },
+      {
+        "geosite": [
+          "rule-ads",
+          "oisd-full",
+          "rule-malicious"
+        ],
+        "outbound": "block"
+      }
+    ]
+  }
+}
