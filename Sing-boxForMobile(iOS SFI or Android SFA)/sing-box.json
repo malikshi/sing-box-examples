@@ -51,10 +51,13 @@
       "type": "urltest",
       "tag": "Proxy",
       "outbounds": [
-        "proxy A",
-        "proxy B",
-        "proxy C",
-        "proxy D"
+        "Trojan GFW/TLS",
+        "Trojan WS",
+        "Vmess WS",
+        "Vless WS",
+        "Trojan gRPC",
+        "Vmess gRPC",
+        "Vless gRPC"
       ],
       "url": "https://detectportal.firefox.com/success.txt",
       "interval": "60s",
@@ -62,27 +65,212 @@
     },
     {
       "domain_strategy": "ipv4_only",
-      "tag": "proxy A",
-      // place 1 account here
-      // check example account at our repo
+      "tag": "Trojan GFW/TLS",
+// https://github.com/malikshi/sing-box-examples/tree/main/Trojan%20GFW%20or%20TLS
+      "type": "trojan",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "password": "PASSWORD",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "android"
+        }
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      }
     },
     {
       "domain_strategy": "ipv4_only",
-      "tag": "proxy B",
-      // place 1 account here
-      // check example account at our repo
+      "tag": "Trojan WS",
+// https://github.com/malikshi/sing-box-examples/tree/main/Trojan%20Websocket
+      "type": "trojan",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "password": "PASSWORD",
+// non tls : remove array tls
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "android"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "TARGETDOMAIN"
+        }
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      }
     },
     {
       "domain_strategy": "ipv4_only",
-      "tag": "proxy C",
-      // place 1 account here
-      // check example account at our repo
+      "tag": "Vmess WS",
+// https://github.com/malikshi/sing-box-examples/tree/main/VMess%20Websocket
+      "type": "vmess",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "uuid": "UUID",
+      "security": "auto",
+      "alter_id": 0,
+      "global_padding": false,
+      "authenticated_length": true,
+// non tls : remove array tls
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "android"
+        }
+      },
+      "packet_encoding": "",
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "YOURDOMAINSERVER"
+        }
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      }
     },
     {
       "domain_strategy": "ipv4_only",
-      "tag": "proxy D",
-      // place 1 account here
-      // check example account at our repo
+      "tag": "Vless WS",
+
+      "type": "vless",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "uuid": "UUID",
+      "flow": "",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "android"
+        }
+      },
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vless-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "YOURDOMAINSERVER"
+        }
+      }
+    },
+    {
+      "domain_strategy": "ipv4_only",
+      "tag": "Trojan gRPC",
+// https://github.com/malikshi/sing-box-examples/tree/main/Trojan%20gRPC
+      "type": "trojan",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "password": "PASSWORD",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "android"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s",
+        "permit_without_stream": false
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      }
+    },
+    {
+      "domain_strategy": "ipv4_only",
+      "tag": "Vmess gRPC",
+// https://github.com/malikshi/sing-box-examples/tree/main/VMess%20gRPC
+      "type": "vmess",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "uuid": "UUID",
+      "security": "auto",
+      "alter_id": 0,
+      "global_padding": false,
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "android"
+        }
+      },
+      "packet_encoding": "",
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s",
+        "permit_without_stream": false
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      }
+    },
+    {
+      "domain_strategy": "ipv4_only",
+      "tag": "Vless gRPC",
+// https://github.com/malikshi/sing-box-examples/tree/main/Vless%20gRPC
+      "type": "vless",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "uuid": "UUID",
+      "flow": "",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "android"
+        }
+      },
+      "packet_encoding": "xudp",
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s",
+        "permit_without_stream": false
+      }
     },
     {
       "type": "direct",
