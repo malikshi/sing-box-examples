@@ -43,13 +43,7 @@
       "strict_route": true,
       "stack": "system",
       "sniff": true,
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "0.0.0.0",
-          "server_port": 8080
-        }
-      }
+      "domain_strategy":"ipv4_only"
     }
   ],
   "outbounds": [
