@@ -132,25 +132,25 @@
       ]
     },
     {
-      "domain_strategy": "",
+      "domain_strategy": "ipv4_only",
       "tag": "proxy A",
       // place 1 account here
       // check example account at our repo
     },
     {
-      "domain_strategy": "",
+      "domain_strategy": "ipv4_only",
       "tag": "proxy B",
       // place 1 account here
       // check example account at our repo
     },
     {
-      "domain_strategy": "",
+      "domain_strategy": "ipv4_only",
       "tag": "proxy C",
       // place 1 account here
       // check example account at our repo
     },
     {
-      "domain_strategy": "",
+      "domain_strategy": "ipv4_only",
       "tag": "proxy D",
       // place 1 account here
       // check example account at our repo

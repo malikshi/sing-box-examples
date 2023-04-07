@@ -88,7 +88,7 @@
   },
   "outbounds": [
     {
-      "domain_strategy": "",
+      "domain_strategy": "ipv4_only",
       "tag": "proxy",
       // place 1 account here
       // check example account at our repo

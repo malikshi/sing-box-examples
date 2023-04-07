@@ -29,7 +29,7 @@ List Examples to fill proxy A, proxy B, proxy C, proxy D in base.json/config.jso
 Since many people doesn't understand json that well so added how to fill proxy a, b, c, d in sing-box format
 ```json
     {
-      "domain_strategy": "",
+      "domain_strategy": "ipv4_only",
       "tag": "proxy A",
 
       "type": "trojan",
@@ -52,7 +52,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
       }
     },
     {
-      "domain_strategy": "",
+      "domain_strategy": "ipv4_only",
       "tag": "proxy B",
 
       "type": "trojan",
@@ -82,7 +82,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
       }
     },
     {
-      "domain_strategy": "",
+      "domain_strategy": "ipv4_only",
       "tag": "proxy C",
 
       "type": "vmess",
@@ -117,7 +117,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
       }
     },
     {
-      "domain_strategy": "",
+      "domain_strategy": "ipv4_only",
       "tag": "proxy D",
 
       "type": "vless",
