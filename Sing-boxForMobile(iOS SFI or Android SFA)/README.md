@@ -10,6 +10,27 @@
 
 server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
 
+## Below Android 10 / Non-privileged
+
+Changes inbound TUN become like this
+
+```json
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fdfe:dcba:9876::1/126",
+      "mtu": 30000,
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "gvisor",
+      "sniff": true,
+      "domain_strategy":"ipv4_only"
+    }
+```
+
 ## EXAMPLE LIST
 
 List Examples to fill proxy A, proxy B, proxy C, proxy D in base.json/config.json
@@ -27,6 +48,7 @@ List Examples to fill proxy A, proxy B, proxy C, proxy D in base.json/config.jso
 ## [Vless Websocket](https://github.com/malikshi/sing-box-examples/blob/main/Vless%20Websocket/README.md)
 
 ## [Vless gRPC](https://github.com/malikshi/sing-box-examples/blob/main/Vless%20gRPC/README.md)
+
 
 ## HOW TO FILL PROXY A, B, C, D
 
