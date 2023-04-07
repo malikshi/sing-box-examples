@@ -34,6 +34,7 @@ NOTE:
 - IP/HOSTED CDN FROM CLOUDFLARE: **Please select IP/Host from a domain that uses Cloudflare CDN**
 - YOURDOMAINSERVER: **Fill with domain of your server**
 - path: **Fill with path of your websocket server**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
 
 ## Trojan Websocket SNI
 ```json
@@ -70,6 +71,7 @@ NOTE:
 - IP/YOURDOMAINSERVER: **Please select IP/Domain of your server**
 - TARGETDOMAIN: **Fill with domain target SNI**
 - path: **Fill with path of your websocket server**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
 
 ## Trojan Websocket NON TLS over CDN Cloudlfare
 ```json
@@ -98,6 +100,7 @@ NOTE:
 - UUID: **Please fill with your UUID**
 - YOURDOMAINSERVER: **Fill with domain of your server**
 - path: **Fill with path of your websocket server**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
 
 ## Trojan Websocket NON TLS
 ```json
@@ -126,3 +129,4 @@ NOTE:
 - UUID: **Please fill with your UUID**
 - TARGETDOMAIN: **Fill with domain target**
 - path: **Fill with path of your websocket server**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`

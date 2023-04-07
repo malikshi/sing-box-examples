@@ -26,3 +26,4 @@
 NOTE:
 - IP/YOURDOMAINSERVER: **Please select IP/Domain of your server**
 - TARGETDOMAIN: **Fill with domain target SNI**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`

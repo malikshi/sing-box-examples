@@ -40,6 +40,7 @@ NOTE:
 - UUID: **Please fill with your UUID**
 - YOURDOMAINSERVER: **Fill with domain of your server**
 - service_name: **fill with grpc servicename**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
 
 ## Vmess gRPC SNI
 ```json
@@ -82,3 +83,4 @@ NOTE:
 - UUID: **Please fill with your UUID**
 - TARGETDOMAIN: **Fill with domain target SNI**
 - service_name: **fill with grpc servicename**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`

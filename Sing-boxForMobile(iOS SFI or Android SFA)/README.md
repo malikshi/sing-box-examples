@@ -5,6 +5,11 @@
   - [GEOSITE](https://github.com/malikshi/sing-box-geo/releases/latest/download/geosite.db)
   - [GEOIP](https://github.com/malikshi/sing-box-geo/releases/latest/download/geoip.db)
 
+
+## MULTIPLEX
+
+server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
+
 ## EXAMPLE LIST
 
 List Examples to fill proxy A, proxy B, proxy C, proxy D in base.json/config.json
@@ -22,7 +27,6 @@ List Examples to fill proxy A, proxy B, proxy C, proxy D in base.json/config.jso
 ## [Vless Websocket](https://github.com/malikshi/sing-box-examples/blob/main/Vless%20Websocket/README.md)
 
 ## [Vless gRPC](https://github.com/malikshi/sing-box-examples/blob/main/Vless%20gRPC/README.md)
-
 
 ## HOW TO FILL PROXY A, B, C, D
 

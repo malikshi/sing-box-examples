@@ -40,6 +40,7 @@ NOTE:
 - UUID: **Please fill with your UUID**
 - YOURDOMAINSERVER: **Fill with domain of your server**
 - path: **Fill with path of your websocket server**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
 
 ## Vmess Websocket TLS SNI
 ```json
@@ -82,6 +83,7 @@ NOTE:
 - UUID: **Please fill with your UUID**
 - TARGETDOMAIN: **Fill with domain target SNI**
 - path: **Fill with path of your websocket server**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
 
 ## Vmess Websocket NON TLS over CDN Cloudlfare
 ```json
@@ -115,6 +117,7 @@ NOTE:
 - UUID: **Please fill with your UUID**
 - YOURDOMAINSERVER: **Fill with domain of your server**
 - path: **Fill with path of your websocket server**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
 
 ## Vmess Websocket NON TLS
 ```json
@@ -148,3 +151,4 @@ NOTE:
 - UUID: **Please fill with your UUID**
 - TARGETDOMAIN: **Fill with domain target**
 - path: **Fill with path of your websocket server**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`

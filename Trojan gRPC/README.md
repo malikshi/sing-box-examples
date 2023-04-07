@@ -34,6 +34,7 @@ NOTE:
 - IP/HOSTED CDN FROM CLOUDFLARE: **Please select IP/Host from a domain that uses Cloudflare CDN**
 - YOURDOMAINSERVER: **Fill with domain of your server**
 - service_name: **fill with grpc servicename**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
 
 ## Trojan gRPC SNI
 ```json
@@ -70,3 +71,4 @@ NOTE:
 - IP/YOURDOMAINSERVER: **Please select IP/Domain of your server**
 - TARGETDOMAIN: **Fill with domain target SNI**
 - service_name: **fill with grpc servicename**
+- server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`

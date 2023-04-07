@@ -5,6 +5,10 @@
   - [GEOSITE](https://github.com/malikshi/sing-box-geo/releases/latest/download/geosite.db)
   - [GEOIP](https://github.com/malikshi/sing-box-geo/releases/latest/download/geoip.db)
 
+## MULTIPLEX
+
+server sing-box supports multiplex, if your server is not sing-box set multiplex to `false`
+
 ## EXAMPLE LIST
 
 List Examples to fill proxy A, proxy B, proxy C, proxy D in base.json/config.json
