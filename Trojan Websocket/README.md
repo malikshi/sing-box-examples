@@ -70,3 +70,59 @@ NOTE:
 - IP/YOURDOMAINSERVER: **Please select IP/Domain of your server**
 - TARGETDOMAIN: **Fill with domain target SNI**
 - path: **Fill with path of your websocket server**
+
+## Trojan Websocket NON TLS over CDN Cloudlfare
+```json
+{
+      "tag": "proxy A",
+      "type": "trojan",
+      "server": "IP/HOSTED CDN FROM CLOUDFLARE",
+      "server_port": 443,
+      "password": "PASSWORD",
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "YOURDOMAINSERVER"
+        }
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      }
+}
+```
+NOTE:
+- IP/HOSTED CDN FROM CLOUDFLARE: **Please select IP/Host from a domain that uses Cloudflare CDN**
+- UUID: **Please fill with your UUID**
+- YOURDOMAINSERVER: **Fill with domain of your server**
+- path: **Fill with path of your websocket server**
+
+## Trojan Websocket NON TLS
+```json
+{
+      "tag": "proxy A",
+      "type": "trojan",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "password": "PASSWORD",
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "TARGETDOMAIN"
+        }
+      },
+      "multiplex": {
+        "enabled": true,
+        "protocol": "smux",
+        "max_streams": 32
+      }
+}
+```
+NOTE:
+- IP/YOURDOMAINSERVER: **Please select IP/Domain of your server**
+- UUID: **Please fill with your UUID**
+- TARGETDOMAIN: **Fill with domain target**
+- path: **Fill with path of your websocket server**
