@@ -57,7 +57,8 @@
         "Vless WS",
         "Trojan gRPC",
         "Vmess gRPC",
-        "Vless gRPC"
+        "Vless gRPC",
+        "Vless Reality"
       ],
       "url": "https://detectportal.firefox.com/success.txt",
       "interval": "60s",
@@ -271,6 +272,30 @@
         "ping_timeout": "15s",
         "permit_without_stream": false
       }
+    },
+    {
+      "domain_strategy": "ipv4_only",
+      "tag": "Vless Reality",
+// https://github.com/malikshi/sing-box-examples/tree/main/Vless%20uTLS%20Reality
+      "type": "vless",
+      "server": "IP",
+      "server_port": 30000,
+      "uuid": "UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "PUBLIC_KEY",
+          "short_id": "SHORT_ID"
+        }
+      },
+      "packet_encoding": "xudp"
     },
     {
       "type": "direct",
