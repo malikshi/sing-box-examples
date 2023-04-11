@@ -24,7 +24,7 @@
         "permit_without_stream": false
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
@@ -61,7 +61,7 @@ NOTE:
         "permit_without_stream": false
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }

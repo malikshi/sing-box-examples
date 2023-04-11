@@ -50,7 +50,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
         }
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
@@ -80,7 +80,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
         }
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
@@ -115,7 +115,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
         }
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
