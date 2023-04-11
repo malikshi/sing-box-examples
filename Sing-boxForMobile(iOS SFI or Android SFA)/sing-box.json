@@ -163,7 +163,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "multiplex": {
@@ -187,7 +187,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "transport": {
@@ -222,7 +222,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "",
@@ -254,7 +254,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "xudp",
@@ -280,7 +280,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "transport": {
@@ -314,7 +314,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "",
@@ -346,7 +346,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "xudp",
@@ -491,7 +491,7 @@
           14422, //Bleach ES
           16999, //growrtopia
           8013,8888, //apex|ff|mlbb|pubg
-          30031, //Tower of Fantasy (Android)
+          30031, //Tower of Fantasy (chrome)
           14009,40005, //LOST SAGA PC/GN
           9339, //Supercell Games
           2099,8088, //Valorant
@@ -529,7 +529,7 @@
           14422, //Bleach ES
           16999, //growrtopia
           8013,8888, // apex|ff|mlbb|pubg
-          8000,30104, //Tower of Fantasy (Android)
+          8000,30104, //Tower of Fantasy (chrome)
           14009,40005, //LOST SAGA PC/GN
           8088, //Valorant
           5010,6650,8011,8700,20000,25000,29134,30000 //Honor of Kings
