@@ -4,6 +4,18 @@
     "level": "info",
     "timestamp": true
   },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "yacd",
+      "external_ui_download_url": "https://github.com/Dreamacro/clash-dashboard/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "Proxy",
+      "secret": "VVIPIPTUNNELS",
+      "default_mode": "rule",
+      "store_selected": true,
+      "cache_file": "clash.db"
+    }
+  },
   "dns": {
     "servers": [
       {
@@ -23,7 +35,15 @@
           ".arpa.",
           ".arpa"
         ],
-        "server": "dns-block"
+        "server": "dns-block",
+        "rewrite_ttl": 20
+      },
+      {
+        "geosite":[
+          "rule-malicious"
+        ],
+        "server": "dns-block",
+        "rewrite_ttl": 20
       }
     ],
     "final": "remote-dns",
@@ -343,8 +363,7 @@
       {
         "geosite": [
           "rule-ads",
-          "oisd-full",
-          "rule-malicious"
+          "oisd-full"
         ],
         "outbound": "block"
       }
