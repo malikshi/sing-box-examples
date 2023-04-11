@@ -4,13 +4,25 @@
     "level": "info",
     "timestamp": true
   },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "yacd",
+      "external_ui_download_url": "https://github.com/Dreamacro/clash-dashboard/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "Internet",
+      "secret": "VVIPIPTUNNELS",
+      "default_mode": "rule",
+      "store_selected": true,
+      "cache_file": "clash.db"
+    }
+  },
   "dns": {
     "servers": [
       {
         "tag": "remote-dns",
         "address": "1.0.0.1",
         "strategy": "ipv4_only",
-        "detour": "Proxy"
+        "detour": "Internet"
       },
       {
         "tag": "dns-block",
@@ -23,7 +35,15 @@
           ".arpa.",
           ".arpa"
         ],
-        "server": "dns-block"
+        "server": "dns-block",
+        "rewrite_ttl": 20
+      },
+      {
+        "geosite":[
+          "rule-malicious"
+        ],
+        "server": "dns-block",
+        "rewrite_ttl": 20
       }
     ],
     "final": "remote-dns",
@@ -48,9 +68,24 @@
   ],
   "outbounds": [
     {
+      "tag": "Internet",
+      "type": "selector",
+      "outbounds":[
+        "Best Latency",
+        "Trojan GFW/TLS",
+        "Trojan WS",
+        "Vmess WS",
+        "Vless WS",
+        "Trojan gRPC",
+        "Vmess gRPC",
+        "Vless gRPC",
+        "Vless Reality"
+      ]
+    },
+    {
+      "tag": "Best Latency",
       "type": "urltest",
-      "tag": "Proxy",
-      "outbounds": [
+      "outbounds":[
         "Trojan GFW/TLS",
         "Trojan WS",
         "Vmess WS",
@@ -63,6 +98,56 @@
       "url": "https://detectportal.firefox.com/success.txt",
       "interval": "60s",
       "tolerance": 0
+    },
+    {
+      "tag": "Lock Region ID",
+      "type": "selector",
+      "outbounds":[
+        "Trojan GFW/TLS",
+        "Trojan WS",
+        "Vmess WS",
+        "Vless WS",
+        "Trojan gRPC",
+        "Vmess gRPC",
+        "Vless gRPC",
+        "Vless Reality"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "GAMESMAX(ML/FF/AOV)",
+      "outbounds": [
+        "direct",
+        "Internet",
+        "Best Latency",
+        "Lock Region ID"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "Route Port Game",
+      "outbounds": [
+        "direct",
+        "Internet",
+        "Best Latency",
+        "Lock Region ID"
+      ]
+    },
+    {
+      "tag": "Option ADs",
+      "type": "selector",
+      "outbounds":[
+        "block",
+        "Internet"
+      ]
+    },
+    {
+      "tag": "Option P0rn",
+      "type": "selector",
+      "outbounds":[
+        "block",
+        "Internet"
+      ]
     },
     {
       "domain_strategy": "ipv4_only",
@@ -78,11 +163,11 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
@@ -102,7 +187,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "transport": {
@@ -113,7 +198,7 @@
         }
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
@@ -137,7 +222,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "",
@@ -149,7 +234,7 @@
         }
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
@@ -169,7 +254,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "xudp",
@@ -195,7 +280,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "transport": {
@@ -206,7 +291,7 @@
         "permit_without_stream": false
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
@@ -229,7 +314,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "",
@@ -241,7 +326,7 @@
         "permit_without_stream": false
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
@@ -261,7 +346,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "xudp",
@@ -313,14 +398,14 @@
   "route": {
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "final": "Proxy",
+    "final": "Internet",
     "geoip": {
       "download_url": "https://github.com/malikshi/sing-box-geo/releases/latest/download/geoip.db",
-      "download_detour": "Proxy"
+      "download_detour": "Internet"
     },
     "geosite": {
       "download_url": "https://github.com/malikshi/sing-box-geo/releases/latest/download/geosite.db",
-      "download_detour": "Proxy"
+      "download_detour": "Internet"
     },
     "rules": [
       {
@@ -338,16 +423,144 @@
         "domain_suffix": [
           "googlesyndication.com"
         ],
-        "outbound": "Proxy"
+        "outbound": "Internet"
       },
       {
         "geosite": [
           "rule-ads",
-          "oisd-full",
-          "rule-malicious"
+          "oisd-full"
         ],
-        "outbound": "block"
-      }
+        "outbound": "Option ADs"
+      },
+      {
+        "geosite":[
+          "oisd-nsfw",
+          "category-porn"
+        ],
+        "outbound":"Option P0rn"
+      },
+      {
+        "port":[
+          3478,
+          4244,
+          5222,
+          5223,
+          5242,
+          45395,
+          50318,
+          59234
+        ],
+        "geoip":[
+          "facebook"
+        ],
+        "outbound":"direct"
+      },
+      {
+        "protocol":"stun",
+        "outbound":"Internet"
+      },
+      {
+        "geosite":[
+          "rule-indo"
+        ],
+        "outbound":"Lock Region ID"
+      },
+      {
+        "network":"udp",
+        "port":[
+          2702,3702,8443,9120,9992,10003, // MLBB
+          6006,6008,6674,7889,8008,8130,8443,9008,9120,10100,12008,13008, // FF
+          8011,9030,10491,10612,12235,13004,13748,17000,17500,10039,10096,11455,13894,13972 // AOV
+        ],
+        "port_range":[
+          "4001:4009","5000:5221","5224:5241","5243:5287","5289:5352","5354:5509","5517:5529","5551:5559","5601:5700","9000:9010","30000:30300", // MLBB
+          "7006:7008","8001:8012","10000:10015","11000:11019", // FF
+          "10101:10201","10080:10110","17000:18000" // AOV
+        ],
+        "outbound":"GAMESMAX(ML/FF/AOV)"
+      },
+      {
+        "network":"tcp",
+        "port":[
+          5517,8443,9443,10003, //MLBB
+          6006,6008,6674,7889,9006,9137,12006,12008,13006,15006,20561,39003,39006,39698,39779,39800, //FF
+          10012,14000,15692,17000,17500,18081,20371, // PUBG Mobile
+          8013,8085,18082,20000,50000,65010,65050, //CODM Garena
+          8013,18082,20166,31003,33445,50000, //AOV Garena
+          42472, //Genshin Impact
+          14422, //Bleach ES
+          16999, //growrtopia
+          8013,8888, //apex|ff|mlbb|pubg
+          30031, //Tower of Fantasy (chrome)
+          14009,40005, //LOST SAGA PC/GN
+          9339, //Supercell Games
+          2099,8088, //Valorant
+          5692,8085,8500,10000,10082,20000,25000,29134,31003 //Honor of Kings
+        ],
+        "port_range":[
+          "5000:5221","5224:5227","5229:5241","5243:5287","5289:5352","5354:5509","5520:5529","5551:5559","5601:5700","9000:9010","30000:30300", //MLBB
+          "7006:7008","8001:8012","10000:10012","11000:11019", //FF
+          "8085:8088","10000:10019","20000:20002", //PUBG Mobile
+          "10000:10001","20000:20001", //AOV Garena
+          "9330:9340", //Clash of Clans (COC) & Clash Royale
+          "2080:2099", //League of Legends (LOL) Mobile
+          "9100:9200","8230:8250","8110:8120","27000:28998", //DOTA2
+          "7770:7790", //FIFA ONLINE
+          "44590:44610", //Point Blank Mobile (PB:Mobile)
+          "10500:10515", //LINE Let’s Get Rich
+          "27015:27030","27036:27037", //Among Us
+          "39190:39200","49001:49190", //PB Zeppeto PB PC
+          "8393:8400" //Valorant
+        ],
+        "outbound":"Route Port Game"
+      },
+      {
+        "network":"udp",
+        "port":[
+          2702,3702,8443,9120,9992,10003, // MLBB
+          6006,6008,6674,7889,8008,8130,8443,9008,9120,10100,12008,13008, //FF
+          8700,10013,10019,10039,10096,10491,10612,11455,12235,13748,13894,13972,17000,17500, //PUBG Mobile
+          8700,9030, //CODM Garena
+          8011,9030,10491,10612,12235,13004,13748,17000,17500,10039,10096,11455,13894,13972, // AOV
+          42472, //Genshin Impact
+          5100, //League of Legends (LOL) Mobile
+          39000, //DOTA2
+          4380,27036, //Among Us
+          14422, //Bleach ES
+          16999, //growrtopia
+          8013,8888, // apex|ff|mlbb|pubg
+          8000,30104, //Tower of Fantasy (chrome)
+          14009,40005, //LOST SAGA PC/GN
+          8088, //Valorant
+          5010,6650,8011,8700,20000,25000,29134,30000 //Honor of Kings
+        ],
+        "port_range":[
+          "4001:4009","5000:5221","5224:5241","5243:5287","5289:5352","5354:5509","5517:5529","5551:5559","5601:5700","9000:9010","30000:30300", // MLBB
+          "7006:7008","8001:8012","10000:10015","11000:11019", //FF
+          "7086:7995","8011:8013","9030:9031","20000:20002","12070:12460","41182:41192", //PUBG Mobile
+          "7500:7995","10010:10019","20000:20001", //CODM Garena
+          "10101:10201","10080:10110","17000:18000", // AOV
+          "5055:5058", //Stumble Guys
+          "22101:22102", //Genshin Impact
+          "9330:9340", //Clash of Clans (COC) & Clash Royale
+          "27000:28998", //DOTA2
+          "16300:16350", //FIFA ONLINE
+          "40000:40010", //Point Blank Mobile (PB:Mobile)
+          "60970:60980", //Dream League Soccer
+          "27000:27031", //Among Us
+          "40000:40010", //PB Zeppeto PB PC
+          "7000:8000","8180:8181","27016:27024","54000:54012" //Valorant
+        ],
+        "outbound":"Route Port Game"
+      },
+      {
+        "geoip":[
+          "id"
+        ],
+        "outbound":"Lock Region ID"
+      },
+      {"port":[21,22,23,80,81,123,143,182,183,194,443,465,587,853,993,995,998,2052,2053,2082,2083,2086,2095,2096,5222,5228,5229,5230,8000,8080,8081,8088,8443,8880,8883,8888,8889],"outbound":"Internet"}, // Common Ports
+      {"port_range":["1023:65535"],"outbound":"Route Port Game"} // ports games
     ]
   }
 }

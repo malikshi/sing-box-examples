@@ -17,7 +17,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "",
@@ -29,7 +29,7 @@
         "permit_without_stream": false
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
@@ -60,7 +60,7 @@ NOTE:
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "",
@@ -72,7 +72,7 @@ NOTE:
         "permit_without_stream": false
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }

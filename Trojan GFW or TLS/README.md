@@ -13,11 +13,11 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "multiplex": {
-        "enabled": true,
+        "enabled": false,
         "protocol": "smux",
         "max_streams": 32
       }
