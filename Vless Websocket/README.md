@@ -14,7 +14,7 @@
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "xudp",
@@ -48,7 +48,7 @@ NOTE:
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "xudp",

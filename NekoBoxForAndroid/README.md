@@ -46,7 +46,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "multiplex": {
@@ -69,7 +69,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "transport": {
@@ -103,7 +103,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "",
@@ -135,7 +135,7 @@ Since many people doesn't understand json that well so added how to fill proxy a
         "insecure": true,
         "utls": {
           "enabled": true,
-          "fingerprint": "android"
+          "fingerprint": "chrome"
         }
       },
       "packet_encoding": "xudp",
