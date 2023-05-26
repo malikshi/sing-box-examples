@@ -1,14 +1,14 @@
 {
   "log": {
     "disabled": false,
-    "level": "info",
+    "level": "warn",
     "timestamp": true
   },
   "experimental": {
     "clash_api": {
-      "external_controller": "127.0.0.1:9090",
+      "external_controller": "0.0.0.0:9090",
       "external_ui": "yacd",
-      "external_ui_download_url": "https://github.com/yaling888/yacd/archive/gh-pages.zip", // recommend from dev sing-box https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip
+      "external_ui_download_url": "https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
       "external_ui_download_detour": "Internet",
       "secret": "VVIPIPTUNNELS",
       "default_mode": "rule",
@@ -19,13 +19,49 @@
   "dns": {
     "servers": [
       {
-        "tag": "remote-dns",
+        "tag": "Internet-dns",
         "address": "1.0.0.1",
         "strategy": "ipv4_only",
         "detour": "Internet"
       },
       {
-        "tag": "dns-block",
+        "tag": "Best Latency-dns",
+        "address": "1.1.1.1",
+        "strategy": "ipv4_only",
+        "detour": "Best Latency"
+      },
+      {
+        "tag": "Lock Region ID-dns",
+        "address": "8.8.8.8",
+        "strategy": "ipv4_only",
+        "detour": "Lock Region ID"
+      },
+      {
+        "tag": "WhatsApp-dns",
+        "address": "8.8.4.4",
+        "strategy": "ipv4_only",
+        "detour": "WhatsApp"
+      },
+      {
+        "tag": "GAMESMAX(ML/FF/AOV)-dns",
+        "address": "8.8.4.4",
+        "strategy": "ipv4_only",
+        "detour": "GAMESMAX(ML/FF/AOV)"
+      },
+      {
+        "tag": "Route Port Game-dns",
+        "address": "9.9.9.9",
+        "strategy": "ipv4_only",
+        "detour": "Route Port Game"
+      },
+      {
+        "tag": "direct-dns",
+        "address": "149.112.112.112",
+        "strategy": "ipv4_only",
+        "detour": "direct"
+      },
+      {
+        "tag": "block-dns",
         "address": "rcode://success"
       }
     ],
@@ -35,21 +71,59 @@
           ".arpa.",
           ".arpa"
         ],
-        "server": "dns-block",
+        "server": "block-dns",
         "rewrite_ttl": 20
       },
       {
-        "geosite":[
-          "rule-malicious"
-        ],
-        "server": "dns-block",
+        "network": "udp",
+        "port": 443,
+        "server": "block-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "geosite": "rule-malicious",
+        "server": "block-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "Internet",
+        "server": "Internet-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "Best Latency",
+        "server": "Best Latency-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "Lock Region ID",
+        "server": "Lock Region ID-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "WhatsApp",
+        "server": "WhatsApp-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "GAMESMAX(ML/FF/AOV)",
+        "server": "GAMESMAX(ML/FF/AOV)-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "Route Port Game",
+        "server": "Route Port Game-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "direct",
+        "server": "direct-dns",
         "rewrite_ttl": 20
       }
     ],
-    "final": "remote-dns",
+    "reverse_mapping": true,
     "strategy": "ipv4_only",
-    "disable_cache": false,
-    "disable_expire": false
+    "independent_cache": true
   },
   "inbounds": [
     {
@@ -62,15 +136,14 @@
       "auto_route": true,
       "strict_route": true,
       "stack": "system",
-      "sniff": true,
-      "domain_strategy":"ipv4_only"
+      "sniff": true
     }
   ],
   "outbounds": [
     {
-      "tag": "Internet",
       "type": "selector",
-      "outbounds":[
+      "tag": "Internet",
+      "outbounds": [
         "Best Latency",
         "Trojan GFW/TLS",
         "Trojan WS",
@@ -83,9 +156,9 @@
       ]
     },
     {
-      "tag": "Best Latency",
       "type": "urltest",
-      "outbounds":[
+      "tag": "Best Latency",
+      "outbounds": [
         "Trojan GFW/TLS",
         "Trojan WS",
         "Vmess WS",
@@ -96,13 +169,12 @@
         "Vless Reality"
       ],
       "url": "https://detectportal.firefox.com/success.txt",
-      "interval": "60s",
-      "tolerance": 0
+      "interval": "1m0s"
     },
     {
-      "tag": "Lock Region ID",
       "type": "selector",
-      "outbounds":[
+      "tag": "Lock Region ID",
+      "outbounds": [
         "Trojan GFW/TLS",
         "Trojan WS",
         "Vmess WS",
@@ -111,6 +183,16 @@
         "Vmess gRPC",
         "Vless gRPC",
         "Vless Reality"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "WhatsApp",
+      "outbounds": [
+        "direct",
+        "Internet",
+        "Best Latency",
+        "Lock Region ID"
       ]
     },
     {
@@ -134,17 +216,17 @@
       ]
     },
     {
-      "tag": "Option ADs",
       "type": "selector",
-      "outbounds":[
+      "tag": "Option ADs",
+      "outbounds": [
         "block",
         "Internet"
       ]
     },
     {
-      "tag": "Option P0rn",
       "type": "selector",
-      "outbounds":[
+      "tag": "Option P0rn",
+      "outbounds": [
         "block",
         "Internet"
       ]
@@ -257,6 +339,11 @@
           "fingerprint": "chrome"
         }
       },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
       "packet_encoding": "xudp",
       "transport": {
         "type": "ws",
@@ -349,6 +436,11 @@
           "fingerprint": "chrome"
         }
       },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
       "packet_encoding": "xudp",
       "transport": {
         "type": "grpc",
@@ -380,6 +472,11 @@
           "short_id": "SHORT_ID"
         }
       },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "h2mux",
+        "max_streams": 32
+      },
       "packet_encoding": "xudp"
     },
     {
@@ -401,11 +498,11 @@
     "final": "Internet",
     "geoip": {
       "download_url": "https://github.com/malikshi/sing-box-geo/releases/latest/download/geoip.db",
-      "download_detour": "Internet"
+      "download_detour": "Best Latency"
     },
     "geosite": {
-      "download_url": "https://github.com/malikshi/sing-box-geo/releases/latest/download/geosite.db",
-      "download_detour": "Internet"
+      "download_url": "https://github.com/malikshi/v2ray-rules-dat/releases/latest/download/geosite.db",
+      "download_detour": "Best Latency"
     },
     "rules": [
       {
@@ -440,7 +537,12 @@
         "outbound":"Option P0rn"
       },
       {
-        "port":[
+        "geosite": "whatsapp",
+        "outbound": "WhatsApp"
+      },
+      {
+        "geoip": "facebook",
+        "port": [
           3478,
           4244,
           5222,
@@ -450,10 +552,7 @@
           50318,
           59234
         ],
-        "geoip":[
-          "facebook"
-        ],
-        "outbound":"direct"
+        "outbound": "WhatsApp"
       },
       {
         "protocol":"stun",
@@ -557,11 +656,11 @@
         "geoip":[
           "id"
         ],
-        "port":[21,22,23,80,81,123,143,182,183,194,443,465,587,853,993,995,998,2052,2053,2082,2083,2086,2095,2096,5222,5228,5229,5230,8000,8080,8081,8088,8443,8880,8883,8888,8889],
+        "port":[21,22,23,80,81,123,143,182,183,194,443,465,587,853,993,995,998,2052,2053,2082,2083,2086,2095,2096,5222,5228,5229,5230,8000,8080,8081,8088,8443,8880,8883,8888,8889,42069],
         "outbound":"Lock Region ID"
       },
-      {"port":[21,22,23,80,81,123,143,182,183,194,443,465,587,853,993,995,998,2052,2053,2082,2083,2086,2095,2096,5222,5228,5229,5230,8000,8080,8081,8088,8443,8880,8883,8888,8889],"outbound":"Internet"}, // Common Ports
-      {"port_range":["1023:65535"],"outbound":"Route Port Game"} // ports games
+      {"port":[21,22,23,80,81,123,143,182,183,194,443,465,587,853,993,995,998,2052,2053,2082,2083,2086,2095,2096,5222,5228,5229,5230,8000,8080,8081,8088,8443,8880,8883,8888,8889,42069],"outbound":"Internet"}, // Common Ports
+      {"port_range":["1023:42068","42070:65535"],"outbound":"Route Port Game"} // ports games
     ]
   }
 }
