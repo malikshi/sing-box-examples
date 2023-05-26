@@ -17,6 +17,11 @@
           "fingerprint": "chrome"
         }
       },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
       "packet_encoding": "xudp",
       "transport": {
         "type": "ws",
@@ -51,6 +56,11 @@ NOTE:
           "fingerprint": "chrome"
         }
       },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
       "packet_encoding": "xudp",
       "transport": {
         "type": "ws",
@@ -76,6 +86,11 @@ NOTE:
       "server_port": 80,
       "uuid": "UUID",
       "flow": "",
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
       "packet_encoding": "xudp",
       "transport": {
         "type": "ws",
@@ -101,6 +116,11 @@ NOTE:
       "server_port": 80,
       "uuid": "UUID",
       "flow": "",
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
       "packet_encoding": "xudp",
       "transport": {
         "type": "ws",

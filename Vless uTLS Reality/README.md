@@ -21,6 +21,11 @@
           "short_id": "SHORT_ID" // change to short id of your account
         }
       },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "h2mux",
+        "max_streams": 32
+      },
       "packet_encoding": "xudp"
 }
 ```

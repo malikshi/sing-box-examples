@@ -17,6 +17,11 @@
           "fingerprint": "chrome"
         }
       },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
+      },
       "packet_encoding": "xudp",
       "transport": {
         "type": "grpc",
@@ -50,6 +55,11 @@ NOTE:
           "enabled": true,
           "fingerprint": "chrome"
         }
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_streams": 32
       },
       "packet_encoding": "xudp",
       "transport": {
