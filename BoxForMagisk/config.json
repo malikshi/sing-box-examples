@@ -1,0 +1,890 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "Internet-dns",
+        "address": "1.0.0.1",
+        "strategy": "ipv4_only",
+        "detour": "Internet"
+      },
+      {
+        "tag": "Best Latency-dns",
+        "address": "1.1.1.1",
+        "strategy": "ipv4_only",
+        "detour": "Best Latency"
+      },
+      {
+        "tag": "Lock Region ID-dns",
+        "address": "8.8.8.8",
+        "strategy": "ipv4_only",
+        "detour": "Lock Region ID"
+      },
+      {
+        "tag": "WhatsApp-dns",
+        "address": "8.8.4.4",
+        "strategy": "ipv4_only",
+        "detour": "WhatsApp"
+      },
+      {
+        "tag": "GAMESMAX(ML/FF/AOV)-dns",
+        "address": "8.8.4.4",
+        "strategy": "ipv4_only",
+        "detour": "GAMESMAX(ML/FF/AOV)"
+      },
+      {
+        "tag": "Route Port Game-dns",
+        "address": "9.9.9.9",
+        "strategy": "ipv4_only",
+        "detour": "Route Port Game"
+      },
+      {
+        "tag": "direct-dns",
+        "address": "149.112.112.112",
+        "strategy": "ipv4_only",
+        "detour": "direct"
+      },
+      {
+        "tag": "block-dns",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain_suffix": [
+          ".arpa.",
+          ".arpa"
+        ],
+        "server": "block-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "server": "block-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "geosite": "rule-malicious",
+        "server": "block-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "Internet",
+        "server": "Internet-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "Best Latency",
+        "server": "Best Latency-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "Lock Region ID",
+        "server": "Lock Region ID-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "WhatsApp",
+        "server": "WhatsApp-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "GAMESMAX(ML/FF/AOV)",
+        "server": "GAMESMAX(ML/FF/AOV)-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "Route Port Game",
+        "server": "Route Port Game-dns",
+        "rewrite_ttl": 20
+      },
+      {
+        "outbound": "direct",
+        "server": "direct-dns",
+        "rewrite_ttl": 20
+      }
+    ],
+    "final": "",
+    "reverse_mapping": true,
+    "strategy": "ipv4_only",
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "::",
+      "listen_port": 53,
+      "override_address": "1.1.1.1",
+      "override_port": 53
+    },
+    {
+      "type": "tproxy",
+      "tag": "tproxy-in",
+      "listen": "::",
+      "listen_port": 9898,
+      "sniff": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "Internet",
+      "outbounds": [
+        "Best Latency",
+        "Trojan GFW/TLS",
+        "Trojan WS",
+        "Vmess WS",
+        "Vless WS",
+        "Trojan gRPC",
+        "Vmess gRPC",
+        "Vless gRPC",
+        "Vless Reality"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "Best Latency",
+      "outbounds": [
+        "Trojan GFW/TLS",
+        "Trojan WS",
+        "Vmess WS",
+        "Vless WS",
+        "Trojan gRPC",
+        "Vmess gRPC",
+        "Vless gRPC",
+        "Vless Reality"
+      ],
+      "url": "https://detectportal.firefox.com/success.txt",
+      "interval": "1m0s"
+    },
+    {
+      "type": "selector",
+      "tag": "Lock Region ID",
+      "outbounds": [
+        "Trojan GFW/TLS",
+        "Trojan WS",
+        "Vmess WS",
+        "Vless WS",
+        "Trojan gRPC",
+        "Vmess gRPC",
+        "Vless gRPC",
+        "Vless Reality"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "WhatsApp",
+      "outbounds": [
+        "direct",
+        "Internet",
+        "Best Latency",
+        "Lock Region ID"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "GAMESMAX(ML/FF/AOV)",
+      "outbounds": [
+        "direct",
+        "Internet",
+        "Best Latency",
+        "Lock Region ID"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "Route Port Game",
+      "outbounds": [
+        "direct",
+        "Internet",
+        "Best Latency",
+        "Lock Region ID"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "Option ADs",
+      "outbounds": [
+        "block",
+        "Internet"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "Option P0rn",
+      "outbounds": [
+        "block",
+        "Internet"
+      ]
+    },
+    {
+      "type": "trojan",
+      "tag": "Trojan GFW/TLS",
+      "domain_strategy": "ipv4_only",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "password": "PASSWORD",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "fingerprint": "chrome"
+        }
+      },
+      "multiplex": {
+        "protocol": "smux",
+        "max_streams": 32
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "Trojan WS",
+      "domain_strategy": "ipv4_only",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "password": "PASSWORD",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "fingerprint": "chrome"
+        }
+      },
+      "multiplex": {
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-trojan-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "TARGETDOMAIN"
+        }
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "Vmess WS",
+      "domain_strategy": "ipv4_only",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "uuid": "UUID",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "fingerprint": "chrome"
+        }
+      },
+      "multiplex": {
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vmess-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "YOURDOMAINSERVER"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "Vless WS",
+      "domain_strategy": "ipv4_only",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "uuid": "UUID",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "fingerprint": "chrome"
+        }
+      },
+      "multiplex": {
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/buy-vless-ws-pm-telegram-at-synricha",
+        "headers": {
+          "Host": "YOURDOMAINSERVER"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "trojan",
+      "tag": "Trojan gRPC",
+      "domain_strategy": "ipv4_only",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "password": "PASSWORD",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "fingerprint": "chrome"
+        }
+      },
+      "multiplex": {
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-trojan-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "Vmess gRPC",
+      "domain_strategy": "ipv4_only",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "uuid": "UUID",
+      "security": "auto",
+      "authenticated_length": true,
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "fingerprint": "chrome"
+        }
+      },
+      "multiplex": {
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-vmess-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "Vless gRPC",
+      "domain_strategy": "ipv4_only",
+      "server": "IP/YOURDOMAINSERVER",
+      "server_port": 443,
+      "uuid": "UUID",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "insecure": true,
+        "utls": {
+          "fingerprint": "chrome"
+        }
+      },
+      "multiplex": {
+        "protocol": "smux",
+        "max_streams": 32
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "buy-vless-grpc-pm-telegram-at-synricha",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "Vless Reality",
+      "domain_strategy": "ipv4_only",
+      "server": "IP",
+      "server_port": 30000,
+      "uuid": "UUID",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "TARGETDOMAIN",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "PUBLIC_KEY",
+          "short_id": "SHORT_ID"
+        }
+      },
+      "multiplex": {
+        "protocol": "h2mux",
+        "max_streams": 32
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    }
+  ],
+  "route": {
+    "geoip": {
+      "download_url": "https://github.com/malikshi/sing-box-geo/releases/latest/download/geoip.db",
+      "download_detour": "Best Latency"
+    },
+    "geosite": {
+      "download_url": "https://github.com/malikshi/v2ray-rules-dat/releases/latest/download/geosite.db",
+      "download_detour": "Best Latency"
+    },
+    "rules": [
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "outbound": "block"
+      },
+      {
+        "domain_suffix": "googlesyndication.com",
+        "outbound": "Internet"
+      },
+      {
+        "geosite": [
+          "rule-ads",
+          "oisd-full"
+        ],
+        "outbound": "Option ADs"
+      },
+      {
+        "geosite": [
+          "oisd-nsfw",
+          "category-porn"
+        ],
+        "outbound": "Option P0rn"
+      },
+      {
+        "geosite":"whatsapp",
+        "outbound":"WhatsApp"
+      },
+      {
+        "geoip": "facebook",
+        "port": [
+          3478,
+          4244,
+          5222,
+          5223,
+          5242,
+          45395,
+          50318,
+          59234
+        ],
+        "outbound": "WhatsApp"
+      },
+      {
+        "protocol": "stun",
+        "outbound": "Internet"
+      },
+      {
+        "geosite": "rule-indo",
+        "outbound": "Lock Region ID"
+      },
+      {
+        "network": "udp",
+        "port": [
+          10003,
+          10039,
+          10096,
+          10100,
+          10491,
+          10612,
+          11455,
+          12008,
+          12235,
+          13004,
+          13008,
+          13748,
+          13894,
+          13972,
+          17000,
+          17500,
+          2702,
+          3702,
+          6006,
+          6008,
+          6674,
+          7889,
+          8008,
+          8011,
+          8130,
+          8443,
+          9008,
+          9030,
+          9120,
+          9992
+        ],
+        "outbound": "GAMESMAX(ML/FF/AOV)"
+      },
+      {
+        "network": "udp",
+        "port_range": [
+          "4001:4009",
+          "5000:5221",
+          "5224:5241",
+          "5243:5287",
+          "5289:5352",
+          "5354:5509",
+          "5517:5529",
+          "5551:5559",
+          "5601:5700",
+          "9000:9010",
+          "30000:30300",
+          "7006:7008",
+          "8001:8012",
+          "10000:10015",
+          "11000:11019",
+          "10101:10201",
+          "10080:10110",
+          "17000:18000"
+        ],
+        "outbound": "GAMESMAX(ML/FF/AOV)"
+      },
+      {
+        "network": "tcp",
+        "port": [
+          10000,
+          10003,
+          10012,
+          10082,
+          12006,
+          12008,
+          13006,
+          14000,
+          14009,
+          14422,
+          15006,
+          15692,
+          16999,
+          17000,
+          17500,
+          18081,
+          18082,
+          20000,
+          20166,
+          20371,
+          20561,
+          2099,
+          25000,
+          29134,
+          30031,
+          31003,
+          31003,
+          33445,
+          39003,
+          39006,
+          39698,
+          39779,
+          39800,
+          40005,
+          42472,
+          50000,
+          5517,
+          5692,
+          6006,
+          6008,
+          65010,
+          65050,
+          6674,
+          7889,
+          8013,
+          8085,
+          8088,
+          8443,
+          8500,
+          8888,
+          9006,
+          9137,
+          9339,
+          9443
+        ],
+        "outbound": "Route Port Game"
+      },
+      {
+        "network": "tcp",
+        "port_range": [
+          "5000:5221",
+          "5224:5227",
+          "5229:5241",
+          "5243:5287",
+          "5289:5352",
+          "5354:5509",
+          "5520:5529",
+          "5551:5559",
+          "5601:5700",
+          "9000:9010",
+          "30000:30300",
+          "7006:7008",
+          "8001:8012",
+          "10000:10012",
+          "11000:11019",
+          "8085:8088",
+          "10000:10019",
+          "20000:20002",
+          "10000:10001",
+          "20000:20001",
+          "9330:9340",
+          "2080:2099",
+          "9100:9200",
+          "8230:8250",
+          "8110:8120",
+          "27000:28998",
+          "7770:7790",
+          "44590:44610",
+          "10500:10515",
+          "27015:27030",
+          "27036:27037",
+          "39190:39200",
+          "49001:49190",
+          "8393:8400"
+        ],
+        "outbound": "Route Port Game"
+      },
+      {
+        "network": "udp",
+        "port": [
+          10003,
+          10013,
+          10019,
+          10039,
+          10096,
+          10100,
+          10491,
+          10612,
+          11455,
+          12008,
+          12235,
+          13004,
+          13008,
+          13748,
+          13894,
+          13972,
+          14009,
+          14422,
+          16999,
+          17000,
+          17500,
+          20000,
+          25000,
+          2702,
+          27036,
+          29134,
+          30000,
+          30104,
+          3702,
+          39000,
+          40005,
+          42472,
+          4380,
+          5010,
+          5100,
+          6006,
+          6008,
+          6650,
+          6674,
+          7889,
+          8000,
+          8008,
+          8011,
+          8013,
+          8088,
+          8130,
+          8443,
+          8700,
+          8888,
+          9008,
+          9030,
+          9120,
+          9992
+        ],
+        "outbound": "Route Port Game"
+      },
+      {
+        "network": "udp",
+        "port_range": [
+          "4001:4009",
+          "5000:5221",
+          "5224:5241",
+          "5243:5287",
+          "5289:5352",
+          "5354:5509",
+          "5517:5529",
+          "5551:5559",
+          "5601:5700",
+          "9000:9010",
+          "30000:30300",
+          "7006:7008",
+          "8001:8012",
+          "10000:10015",
+          "11000:11019",
+          "7086:7995",
+          "8011:8013",
+          "9030:9031",
+          "20000:20002",
+          "12070:12460",
+          "41182:41192",
+          "7500:7995",
+          "10010:10019",
+          "20000:20001",
+          "10101:10201",
+          "10080:10110",
+          "17000:18000",
+          "5055:5058",
+          "22101:22102",
+          "9330:9340",
+          "27000:28998",
+          "16300:16350",
+          "40000:40010",
+          "60970:60980",
+          "27000:27031",
+          "40000:40010",
+          "7000:8000",
+          "8180:8181",
+          "27016:27024",
+          "54000:54012"
+        ],
+        "outbound": "Route Port Game"
+      },
+      {
+        "geoip": "id",
+        "port": [
+          21,
+          22,
+          23,
+          80,
+          81,
+          123,
+          143,
+          182,
+          183,
+          194,
+          443,
+          465,
+          587,
+          853,
+          993,
+          995,
+          998,
+          2052,
+          2053,
+          2082,
+          2083,
+          2086,
+          2095,
+          2096,
+          5222,
+          5228,
+          5229,
+          5230,
+          8000,
+          8080,
+          8081,
+          8088,
+          8443,
+          8880,
+          8883,
+          8888,
+          8889,
+          42069
+        ],
+        "outbound": "Lock Region ID"
+      },
+      {
+        "port": [
+          21,
+          22,
+          23,
+          80,
+          81,
+          123,
+          143,
+          182,
+          183,
+          194,
+          443,
+          465,
+          587,
+          853,
+          993,
+          995,
+          998,
+          2052,
+          2053,
+          2082,
+          2083,
+          2086,
+          2095,
+          2096,
+          5222,
+          5228,
+          5229,
+          5230,
+          8000,
+          8080,
+          8081,
+          8088,
+          8443,
+          8880,
+          8883,
+          8888,
+          8889,
+          42069
+        ],
+        "outbound": "Internet"
+      },
+      {
+        "port_range": [
+          "1023:42068",
+          "42070:65535"
+        ],
+        "outbound": "Route Port Game"
+      }
+    ],
+    "final": "Internet",
+    "find_process": true,
+    "auto_detect_interface": false,
+    "override_android_vpn": false
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "0.0.0.0:9090",
+      "external_ui": "./dashboard",
+      "store_selected": true,
+      "store_fakeip": false
+    }
+  }
+}
