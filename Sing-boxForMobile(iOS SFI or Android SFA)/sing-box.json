@@ -132,10 +132,11 @@
       "interface_name": "tun0",
       "inet4_address": "172.19.0.1/30",
       "inet6_address": "fdfe:dcba:9876::1/126",
-      "mtu": 30000,
+      "mtu": 1358,
       "auto_route": true,
       "strict_route": true,
-      "stack": "system",
+      "stack": "gvisor",
+      "endpoint_independent_nat": true,
       "sniff": true
     }
   ],
