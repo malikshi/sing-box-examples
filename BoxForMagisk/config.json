@@ -1,6 +1,7 @@
 {
   "log": {
     "level": "info",
+    "output": "/data/adb/box/run/sing-box.log",
     "timestamp": true
   },
   "dns": {
@@ -108,7 +109,6 @@
         "rewrite_ttl": 20
       }
     ],
-    "final": "",
     "reverse_mapping": true,
     "strategy": "ipv4_only",
     "independent_cache": true
@@ -489,8 +489,8 @@
         "outbound": "Option P0rn"
       },
       {
-        "geosite":"whatsapp",
-        "outbound":"WhatsApp"
+        "geosite": "whatsapp",
+        "outbound": "WhatsApp"
       },
       {
         "geoip": "facebook",
@@ -875,16 +875,13 @@
       }
     ],
     "final": "Internet",
-    "find_process": true,
-    "auto_detect_interface": false,
-    "override_android_vpn": false
+    "find_process": true
   },
   "experimental": {
     "clash_api": {
       "external_controller": "0.0.0.0:9090",
       "external_ui": "./dashboard",
-      "store_selected": true,
-      "store_fakeip": false
+      "store_selected": true
     }
   }
 }
