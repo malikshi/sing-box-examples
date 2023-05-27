@@ -115,14 +115,6 @@
   },
   "inbounds": [
     {
-      "type": "direct",
-      "tag": "dns-in",
-      "listen": "::",
-      "listen_port": 53,
-      "override_address": "1.1.1.1",
-      "override_port": 53
-    },
-    {
       "type": "tproxy",
       "tag": "tproxy-in",
       "listen": "::",
@@ -459,10 +451,6 @@
     "rules": [
       {
         "port": 53,
-        "outbound": "dns-out"
-      },
-      {
-        "inbound": "dns-in",
         "outbound": "dns-out"
       },
       {
